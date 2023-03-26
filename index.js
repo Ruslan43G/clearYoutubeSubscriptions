@@ -3,8 +3,14 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const red = async () => {
+const clearSubscriptions = async () => {
     const count = document.querySelectorAll("ytd-channel-renderer:not(.ytd-item-section-renderer)");
+
+    if(!Array.from(count).length) {
+        alert('Подписок нет!')
+
+        return
+    }
 
     for (const el of count) {
         const btn = el.querySelector('button')
@@ -20,13 +26,12 @@ const red = async () => {
         await sleep(500)
 
         el.parentNode.removeChild(el);
-
-        if(Array.from(count).indexOf(el) === -1) {
-            await red()
-        }
     }
+
+    await sleep(5000)
+    await clearSubscriptions()
 }
 
 (async () => {
-    await red()
+    await clearSubscriptions()
 })()
