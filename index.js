@@ -29,5 +29,4 @@ const red = async () => {
 
 (async () => {
     await red()
-    window.location.reload()
 })()
