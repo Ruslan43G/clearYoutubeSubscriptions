@@ -2,7 +2,6 @@ const GO_TO_SUBS_BTN = document.querySelector('#subscriptions')
 const CLEAR_SUBS_BTN = document.querySelector('#clearSubscriptions')
 GO_TO_SUBS_BTN.addEventListener('click', async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    console.warn(tab)
     chrome.scripting.executeScript({
         // скрипт будет выполняться во вкладке, которую нашли на предыдущем этапе
         target: { tabId: tab.id },
